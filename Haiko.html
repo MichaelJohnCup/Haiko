@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haiku Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .haiku {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generátor Haiku</h1>
+        <input type="text" id="word1" placeholder="Slovo 1">
+        <input type="text" id="word2" placeholder="Slovo 2">
+        <input type="text" id="word3" placeholder="Slovo 3">
+        <button onclick="generateHaiku()">Generovat Haiku</button>
+        <div class="haiku" id="haikuOutput"></div>
+    </div>
+
+    <script>
+        function generateHaiku() {
+            const word1 = document.getElementById('word1').value.trim();
+            const word2 = document.getElementById('word2').value.trim();
+            const word3 = document.getElementById('word3').value.trim();
+
+            if (word1 && word2 && word3) {
+                const haikuTemplates = [
+                    [`${word1} v jarním vánku,`, `${word2} tančí v noci,`, `čerstvý a tichý ${word3}.`],
+                    [`Za ${word1} svítá,`, `${word2} šepoty větru,`, `v srdci ${word3}.`],
+                    [`${word1} jak sníh padá,`, `na ${word2} chladný list,`, `vánkem ${word3}.`],
+                    [`${word1} v dešti,`, `${word2} ztracené v mlze,`, `tichý ${word3}.`]
+                ];
+
+                const randomIndex = Math.floor(Math.random() * haikuTemplates.length);
+                const haikuLines = haikuTemplates[randomIndex];
+
+                document.getElementById('haikuOutput').innerText = haikuLines.join('\n');
+            } else {
+                document.getElementById('haikuOutput').innerText = 'Prosím, zadejte všechna tři slova.';
+            }
+        }
+    </script>
+</body>
+</html>
